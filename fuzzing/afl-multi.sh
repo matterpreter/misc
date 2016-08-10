@@ -21,14 +21,14 @@ build () {
   screen -S master -d -m afl-fuzz -i /root/testcases/ -o /root/syncdir/ -M master $afl_command
   # Added in the sleep timers to help control random crashes on startup
   sleep 5
-  for ((i=1;i<=instances;i++));
+  for ((i=1;i<instances;i++));
   do
     echo "[*] Creating slave instance #$i"
     #echo "command: screen -S slave$i -d -m afl-fuzz -i $testcases -o $syncdir -S slave$i $afl_command"
     screen -S slave$i -d -m afl-fuzz -i /root/testcases/ -o /root/syncdir/ -S slave$i $afl_command
     sleep 5
   done
-  let "i=i+1"
+  let "i=i-1"
   echo "[+] $i fuzzers created!"
 }
 
@@ -56,11 +56,6 @@ while getopts ":n:i:o:c:" o; do
     esac
 done
 shift $((OPTIND-1))
-
-#echo "instances = ${instances}"
-#echo "testcases = ${testcases}"
-#echo "syncdir = ${syncdir}"
-#echo "afl_command = ${afl_command}"
 
 build
 

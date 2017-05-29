@@ -35,4 +35,4 @@ cd afl-utils
 python3 setup.py install
 echo "source /usr/lib/python3.5/site-packages/exploitable-1.32_rcor-py3.5.egg/exploitable/exploitable.py" >> ~/.gdbinit
 
-print "[+] AFL Test Bench ready to go!"
+echo "[+] AFL Test Bench ready to go!"

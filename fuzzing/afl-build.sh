@@ -19,6 +19,7 @@ echo "[+] Installing latest AFL..."
 echo core >/proc/sys/kernel/core_pattern
 mkdir ~/testcases
 mkdir ~/findings
+mount -t ramfs -o size=512m ramfs ~/testcases
 
 #Download and install AFL
 rm afl-latest.tgz

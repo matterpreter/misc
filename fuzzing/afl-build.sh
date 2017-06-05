@@ -10,7 +10,8 @@ fi
 
 #Update and install needed applications if they're not already there.
 echo "[+] Updating system..."
-apt-get update && apt-get -y upgrade >>build.log 2>&1
+apt-get update >>build.log 2>&1
+apt-get -y upgrade >>build.log 2>&1
 echo "[+] Installing required packages..."
 apt-get install -y wget build-essential clang screen vim python3 python3-setuptools gdb >>build.log 2>&1
 

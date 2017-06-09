@@ -23,11 +23,12 @@ mkdir ~/findings
 mount -t ramfs -o size=512m ramfs ~/testcases
 
 #Download and install AFL
-rm afl-latest.tgz
+rm afl-latest.tgz >>build.log 2>&1
 wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz >>build.log 2>&1
 tar xzvf afl-latest.tgz >>build.log 2>&1
 cd afl*
-make && make install >>build.log 2>&1
+make >>build.log 2>&1
+make install >>build.log 2>&1
 cd llvm_mode
 LLVM_CONFIG=llvm-config-3.8 make >>build.log 2>&1
 cd ..
@@ -46,7 +47,5 @@ echo "[+] Installing PEDA..."
 git clone https://github.com/longld/peda.git ~/peda >>build.log 2>&1
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 
-AFL-GCC="$(which afl-gcc)"
-
 echo "[+] AFL Test Bench ready to go!"
-echo "afl-gcc location: ${AFL-GCC}"
+echo "afl-gcc location: "$(which afl-gcc)

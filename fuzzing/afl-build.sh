@@ -15,7 +15,8 @@ apt-get update >>build.log 2>&1
 apt-get -y upgrade >>build.log 2>&1
 echo "[+] Installing required packages..."
 apt-get install -y wget build-essential clang screen vim python3 \
-python3-setuptools gdb debootstrap>>build.log 2>&1
+python3-setuptools gdb debootstrap libini-config-dev libtool-bin \
+automake bison libglib2.0-dev qemu>>build.log 2>&1
 
 #Setup the system for AFL
 echo "[+] Installing latest AFL..."
@@ -35,6 +36,12 @@ cd llvm_mode
 LLVM_CONFIG=llvm-config-3.8 make >>build.log 2>&1
 cd ..
 make install >>build.log 2>&1
+
+#Build out support for QEMU
+cd afl*/qemu_mode
+./build_qemu_support.sh >>build.log 2>&1
+cd ..
+make install
 
 #Download and install afl-utils
 echo "[+] Installing afl-utils..."

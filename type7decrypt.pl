@@ -20,8 +20,8 @@ if ($ARGV[0] eq ""){
    print "This script reveals the IOS passwords obfuscated using the Vigenere algorithm.\n";
    print "\n";
    print "Usage guidelines:\n";
-   print " cdecrypt.pl 04480E051A33490E     # Reveals a single password\n";
-   print " cdecrypt.pl running-config.rcf   # Changes all passwords in a file to cleartext\n";
+   print " type7decrypt.pl 04480E051A33490E     # Reveals a single password\n";
+   print " type7decrypt.pl running-config.rcf   # Changes all passwords in a file to cleartext\n";
    print "                                  # Original file stored with .bak extension\n";
 }
  
